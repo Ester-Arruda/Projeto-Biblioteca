@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block 'titulo' %} Cadastro {% endblock %}
+
+{% block 'conteudo' %}
+    <div class="container">
+        <br>
+        {% if status == '0' %}
+            <div class="alert alert-success" role="alert">
+                Cadastro realizado com sucesso!
+            </div>
+        {% endif %}
+
+        {% if status == '1' %}
+            <div class="alert alert-danger" role="alert">
+                Nome ou Email não podem estar vazios!
+          </div>
+        {% endif %}
+
+        {% if status == '2' %}
+            <div class="alert alert-danger" role="alert">
+                Senha deve conter pelo menos 8 caracteres!
+            </div>
+        {% endif %}
+
+        {% if status == '3' %}
+            <div class="alert alert-danger" role="alert">
+                Usuario já existe no sistema!
+            </div>
+        {% endif %}
+
+        {% if status == '4' %}
+            <div class="alert alert-danger" role="alert">
+                Erro interno do sistemas!
+            </div>
+        {% endif %}
+
+        <div class="row">
+            <div class="col-md-3">
+            </div>
+
+            <div class="col-md">
+                <br>
+                <h1>Cadastre-se</h1>
+                <hr>
+
+                <form method="POST" action="{% url 'valida_cadastro' %}">{% csrf_token %} <!--url com name: valida_cadastro que possui a view valida_cadastro que vai receber esses dados peo name-->
+                    <label>Nome</label>
+                    <input class="form-control" type="text" placeholder="Nome..." name="nome">
+                    <br>
+                    <label>Email</label>
+                    <input class="form-control" type="email" placeholder="Email.." name="email">
+                    <br>
+                    <label>Senha</label>
+                    <input class="form-control" type="password" placeholder="Senha..." name="senha">
+                    <br>
+
+                    <input class="btn btn-info btn-lg" type="submit" value="Enviar">
+                    <a href="{% url 'login' %}" class="btn btn-success btn-lg">Login</a>
+                </form>
+            </div>
+
+            <div class="col-md-3">               
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

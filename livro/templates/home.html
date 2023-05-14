@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block 'titulo' %} Home {% endblock %}
+
+
+
+{% block 'conteudo' %}
+        
+<div class="container">
+    <br>
+
+    {% if status_categoria == '1' %}
+        <div class="alert alert-success" role="alert">
+            Categoria Cadastrada com Sucesso
+        </div>
+    {% endif %}
+
+    <div class="row">
+
+        {% for livro in livros %}
+            <div class="col-md">  
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <img style="width: 90%;" src="{{livro.img.url}}"> <!--Precisa do 'url' para pegar o caminho completo da img definido em settings.py-->
+                        <h5 class="card-title">{{livro.nome}}</h5>                   
+                        <h6 style="display: inline;" class="card-subtitle mb-2 text-muted">Emprestado</h6>
+
+                        {% if livro.emprestado %}
+                        
+                            <svg style="display: inline; color:green;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+                                <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
+                            </svg>
+                        {% else %}
+
+                            <svg style="display: inline; color:red" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                            </svg>
+
+                        {% endif %}
+                        <br>
+                        <br>
+                        <a href="{% url 'ver_livros' livro.id %}" class="btn btn btn-info">Acessar</a>
+                    </div>                   
+                </div>       
+            </div>
+        {% endfor%}
+
+    </div>
+</div>
+
+{% endblock %}
