@@ -15,7 +15,7 @@ O Projeto-Biblioteca é uma aplicação web desenvolvida através do canal Pytho
 - Navegador Web atualizado
 
 ### Instalação
-1. Clone o repositório do projeto: git clone
+1. Clone o repositório do projeto: git clone https://github.com/Ester-Arruda/Projeto-Biblioteca.git
 2. Instale as dependências: pip install -r requirements.txt
 3. Inicie o servidor Django: python manage.py runserver
 
